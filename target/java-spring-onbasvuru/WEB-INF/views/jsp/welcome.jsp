@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<c:url var="home" value="/" scope="request" />
 	
+	<!-- Tema Bütünüyle alıntıdır dizayn üzerinde sadece minik değişiklikler yaptım-->
     <meta name="description" content="GRAPE App landing Page by Codepassenger">
     <meta name="author" content="CodePassenger">
 	
