@@ -220,7 +220,7 @@
                     </div>
                     <div class="form-group">
                    
-                      <input type="submit" class="btn btn-block" value="Formu Gönder">
+                      <input type="submit" id="form_submitter" class="btn btn-block" value="Formu Gönder">
                     </div>
                   </div>
                 </form>
@@ -344,7 +344,7 @@
 			//formun ajax ile post edilmesi
 			
 			$("#basvuruform").submit(function(e) {
-
+				$( "#form_submitter" ).prop( "disabled", true );
 			    var form = $(this);
 
 			    $.ajax({
@@ -355,7 +355,7 @@
 			           {
 			        	   $("#modal_div").html(data); //gelen bsmodal DOMa gömülür
 			        	   $("#modal_message").modal("toggle");//gösterilir.
-			              
+			        	   $( "#form_submitter" ).prop( "disabled", false );
 			           }
 			         });
 

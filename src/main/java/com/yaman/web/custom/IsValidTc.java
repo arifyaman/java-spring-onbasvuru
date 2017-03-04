@@ -24,8 +24,5 @@ public @interface IsValidTc {
 	String message() default "Girdiğiniz TC kimlik numarasına sahip biri yok. Geçerli bir TC giriniz :)";
 	Class<?>[] groups() default { };
 	Class<? extends Payload>[] payload() default { };
-	
-	
-	
-	
+		
 }

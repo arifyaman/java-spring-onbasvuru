@@ -9,13 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
+
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.mysql.jdbc.ConnectionProperties;
-import com.mysql.jdbc.ConnectionPropertiesImpl;
-import com.mysql.jdbc.ExceptionInterceptor;
 import com.yaman.web.modal.BasvuruForm;
 import com.yaman.web.modal.BootstrapModal;
 import com.yaman.web.modal.BootstrapModal.ModelType;
@@ -35,17 +32,11 @@ public class MyConnection {
 		fix_problems=true; //tablo ve veri tabanı eksikleri varsa initialize edilirken düzeltme kontrolü
 		bootstrapModal=new BootstrapModal();
 		
-		
 		init_conection();
-		
-		
-		
-		
 	}
 	
 	
 	private void init_conection() throws BootstrapModal {
-		
 				try {
 					Connection connection= datasource.getConnection();
 					Statement statement=connection.createStatement();
@@ -76,9 +67,6 @@ public class MyConnection {
 					 */
 					throw bootstrapModal;
 				}
-		
-		
-		
 	}
 	
 	private void create_onbasvuruform_table() throws BootstrapModal {
@@ -116,21 +104,7 @@ public class MyConnection {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public void addBasvuruForm(BasvuruForm basvuruForm) throws BootstrapModal {
-	
-		
-		
 		try {
 			Connection connection=datasource.getConnection();
 			
@@ -169,10 +143,6 @@ public class MyConnection {
 			//connection init edilirken hidden fonksiyonu çağrılmış olabilir.
 			throw bootstrapModal.show();
 		}
-		
-		
-		
-		
 		
 	}
 	

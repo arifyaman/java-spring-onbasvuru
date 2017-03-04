@@ -61,11 +61,11 @@ public class BasvuruForm {
 	private String tercih_neden;
 	
 	@NotEmpty(message="Bir il seçmelisiniz")
-	@Size(min=2,max=20,message="İl ile 20 karakter arasında olmalıdır")	
+	@Size(min=2,max=20,message="İl 2 ile 20 karakter arasında olmalıdır")	
 	private String tercih_il;
 	
 	@NotEmpty(message="Bir ilçe seçmelisiniz")
-	@Size(min=2,max=20,message="İlçe ile 20 karakter arasında olmalıdır")	
+	@Size(min=2,max=20,message="İlçe 2 ile 20 karakter arasında olmalıdır")	
 	private String tercih_ilce;
 	
 	
@@ -147,10 +147,9 @@ public class BasvuruForm {
 	
 
 	public void setis_parakende(boolean is_parakende) {
-		if(is_parakende)
-		this.is_parakende=true;
-		else
-			is_parakende=false;
+		
+		this.is_parakende=is_parakende;
+		
 	}
 	
 	public void settercih_neden(String tercih_neden) {
@@ -203,23 +202,10 @@ public class BasvuruForm {
 		this.ekstra=ekstra;
 	}
 	
-	
-	
-	
-	
-	
 	boolean is_valid_tc(Long tc){
 		
 		return true;
 	}
-	
-	
-	
-	
-	
-
-	
-	
 	
 	
 	public String toString() {

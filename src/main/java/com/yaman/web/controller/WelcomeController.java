@@ -2,9 +2,6 @@ package com.yaman.web.controller;
 
 
 
-import java.util.List;
-
-import javax.validation.Valid;
 
 /**
  * @author Arif
@@ -19,6 +16,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import javax.validation.Valid;
 
 import com.yaman.web.connection.MyConnection;
 import com.yaman.web.modal.BasvuruForm;
@@ -30,8 +28,6 @@ import com.yaman.web.modal.BootstrapModal.ModelType;
 @Controller
 public class WelcomeController {
 
-	
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 		
@@ -52,13 +48,11 @@ public class WelcomeController {
 			//hatalı veya başarılı durum için bsmodal oluşturulur. 	
 			BootstrapModal bsmodal=new BootstrapModal().setType(ModelType.Error).setTitle("Formu Kontrol Edin");
 	
-		
 			//eğer girilen verilerde problemler varsa bsmodal içine gömülür
-	        if (bindingResult.hasErrors()) { 
-	          for (ObjectError objectError : bindingResult.getAllErrors()) {
-	        	  
+	        if (bindingResult.hasErrors()) {
+	          for (ObjectError objectError : bindingResult.getAllErrors())
 	        	  bsmodal.add_to_body("-"+objectError.getDefaultMessage());
-	          }
+	          
 	         
 	        }else{
 	        
@@ -78,15 +72,11 @@ public class WelcomeController {
 						e.add_to_body("-Formunuz gönderilemedi tekrar deneyin").setType(ModelType.Warning);
 					
 					/*
-					 * Değilse problemler form veritabanına eklenirken oluşmuştur. Muhtemel SQL hataları döner bu da kullanıcıya gösterilir.
+					 * Değilse problemler basvuruformu veritabanına eklenirken oluşmuştur. Muhtemel SQL hataları kontrol edilir kullanıcıya gösterilir.
 					 */
-				
 					model.addAllAttributes(e.getAttributesMap());
 					return "returnbsmodal";
 				}
-	        	
-	        	
-	        		
 	        }
 	        
 	        //hatalı veya başarılı durumlar bsmodal a gömülmüştür. Spring framework UI ModelPapine bsmodaldan gelen değerler attribute olarak gömülür.

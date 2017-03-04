@@ -9,7 +9,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="${modal_type}">
-  			<strong><b>${modal_title}</strong></b><br> ${modal_body}
+  			<strong><b>${modal_title}</b></strong><br> ${modal_body}
 			</div>
       </div>
       
