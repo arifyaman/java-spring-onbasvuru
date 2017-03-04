@@ -53,7 +53,9 @@ public class WelcomeController {
 	          for (ObjectError objectError : bindingResult.getAllErrors())
 	        	  bsmodal.add_to_body("-"+objectError.getDefaultMessage());
 	          
-	         
+	          		model.addAllAttributes(bsmodal.getAttributesMap());
+		        
+	          		return "returnbsmodal";
 	        }else{
 	        
 	        	try {
@@ -61,6 +63,10 @@ public class WelcomeController {
 	        		myconection.addBasvuruForm(basvuruForm);
 		        	bsmodal.setType(ModelType.Success).setTitle("Başarılı").setBody("Formunuz bize Ulaştı Teşekkürler...");
 
+		        	//Başarılı durumlar bsmodal a gömülmüştür. Spring framework UI ModelPapine bsmodaldan gelen değerler attribute olarak gömülür.
+			        model.addAllAttributes(bsmodal.getAttributesMap());
+			        
+			        return "returnbsmodal";
 				} catch (BootstrapModal e) {
 					/*
 					 * Eğer info türünden bir modal throw edildiyse 
@@ -79,11 +85,7 @@ public class WelcomeController {
 				}
 	        }
 	        
-	        //hatalı veya başarılı durumlar bsmodal a gömülmüştür. Spring framework UI ModelPapine bsmodaldan gelen değerler attribute olarak gömülür.
-	        model.addAllAttributes(bsmodal.getAttributesMap());
 	        
-	        //welcome.jsp üzerinden çağrıldığında 
-	        return "returnbsmodal";
 	    }
 
 }

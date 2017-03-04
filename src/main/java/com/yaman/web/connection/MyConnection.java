@@ -116,7 +116,7 @@ public class MyConnection {
 					+ ", ?, ?, ?, ?, ?,"
 					+ " ?, ?, ?, ?, ?)");
 			
-			statement.setString(1, basvuruForm.getAdsoyad());
+			statement.setString(1, basvuruForm.getAdsoyad());		
 			statement.setString(2, basvuruForm.gettc());
 			statement.setString(3, basvuruForm.getadres());
 			statement.setString(4, basvuruForm.gettelefon());
@@ -134,7 +134,7 @@ public class MyConnection {
 			connection.close();
 			
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 			if(e.getErrorCode()==1062)
 				bootstrapModal.setType(ModelType.Warning).setTitle("İlginize Teşekkür Ederiz").setBody("Daha önce başvuru formu göndermişsiniz");
 			else
