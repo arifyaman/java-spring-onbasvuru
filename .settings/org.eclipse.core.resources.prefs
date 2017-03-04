@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/yaman/config/SpringWebConfig.java=UTF-8
+encoding//src/main/java/com/yaman/web/connection/MyConnection.java=UTF-8
+encoding//src/main/java/com/yaman/web/controller/WelcomeController.java=UTF-8
+encoding//src/main/java/com/yaman/web/custom/IsValidTc.java=UTF-8
+encoding//src/main/java/com/yaman/web/custom/validators/TcValidator.java=UTF-8
+encoding//src/main/java/com/yaman/web/modal/BasvuruForm.java=UTF-8
+encoding//src/main/java/com/yaman/web/modal/BootstrapModal.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/jsp/welcome.jsp=UTF-8
+encoding//src/main/webapp/assets/il-ilce.json=UTF-8

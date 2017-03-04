@@ -1,0 +1,9 @@
+com\yaman\web\connection\MyConnection.class
+com\yaman\web\modal\BootstrapModal.class
+com\yaman\servlet3\MyWebInitializer.class
+com\yaman\web\custom\validators\TcValidator.class
+com\yaman\config\SpringWebConfig.class
+com\yaman\web\custom\IsValidTc.class
+com\yaman\web\modal\BootstrapModal$ModelType.class
+com\yaman\web\controller\WelcomeController.class
+com\yaman\web\modal\BasvuruForm.class
