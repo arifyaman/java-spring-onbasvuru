@@ -76,7 +76,7 @@ public class BasvuruForm {
 	private String tercih_semt;
 	
 	@NotEmpty(message="Yatırım miktarınızı belirtmelisiniz")
-	@Size(min=3,max=11,message="Yatırım miktarınız 3 ve 10 hane arasında sayılardan oluşmalı")
+	@Size(min=3,max=11,message="Yatırım miktarınız 3 ve 10 hane arasında olmalı")
 	@Pattern(regexp="[0-9]+",message="Yatırımınız sayılardan oluşmalı")
 	private String yatirim;
 	
