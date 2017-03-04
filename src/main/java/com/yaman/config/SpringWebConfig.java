@@ -1,5 +1,6 @@
 package com.yaman.config;
  
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		//bootstrap validator gibi js ve css kaynaklarının bulunduğu kısım kaynak olarak gösterilir. Build edildiğinde projenin dosyalara assets dizininden ulaşabilmesi için.
 		registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
+		
 	}
 	
 	@Bean		//Bean konfigürasyonu jsp dosyalarının dizini belirlenir.
@@ -33,10 +35,11 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	//Bean konfigürasyonu valid annotation kullanıldığı için dizin konfigüre edilir.
 	//form post edildiğinde alınan basvuruform nesnesinin geçerli olup olmadığının kontrolü için
 	@Bean		
-	public ResourceBundleMessageSource getResourceBundleMessageSource() {
+	public MessageSource  messageSource() {
 		ResourceBundleMessageSource resourceBundleMessageSource =new ResourceBundleMessageSource();
-		resourceBundleMessageSource.setBasename("/WEB-INF/views/jsp/");
+		resourceBundleMessageSource.addBasenames("/WEB-INF/views/jsp/");
 		return resourceBundleMessageSource;
 	}
+
  
 }

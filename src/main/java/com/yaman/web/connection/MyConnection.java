@@ -117,7 +117,7 @@ public class MyConnection {
 					+ " ?, ?, ?, ?, ?)");
 			
 			statement.setString(1, basvuruForm.getAdsoyad());
-			statement.setLong(2, basvuruForm.gettc());
+			statement.setString(2, basvuruForm.gettc());
 			statement.setString(3, basvuruForm.getadres());
 			statement.setString(4, basvuruForm.gettelefon());
 			statement.setString(5, basvuruForm.geteposta());
@@ -127,7 +127,7 @@ public class MyConnection {
 			statement.setString(9, basvuruForm.gettercih_il());
 			statement.setString(10, basvuruForm.gettercih_ilce());
 			statement.setString(11, basvuruForm.gettercih_semt());
-			statement.setInt(12, basvuruForm.getyatirim());
+			statement.setString(12, basvuruForm.getyatirim());
 			statement.setString(13, basvuruForm.getekstra());
 			statement.execute();
 			

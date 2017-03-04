@@ -15,7 +15,7 @@ import com.yaman.web.custom.IsValidTc;
  * @author Arif
  *
  */
-public class TcValidator implements ConstraintValidator<IsValidTc, Long> {
+public class TcValidator implements ConstraintValidator<IsValidTc, String> {
 
 	@Override
 	public void initialize(IsValidTc arg0) {
@@ -24,15 +24,18 @@ public class TcValidator implements ConstraintValidator<IsValidTc, Long> {
 	}
 
 	@Override
-	public boolean isValid(Long arg0, ConstraintValidatorContext arg1) {
+	public boolean isValid(String arg0, ConstraintValidatorContext arg1) {
 		
 		return is_valid_tc(arg0);
 	}
 	
-	boolean is_valid_tc(Long tc){
+	boolean is_valid_tc(String tc){
 		try {
-		String s_tc=String.valueOf(tc);
-		char[] cs=s_tc.toCharArray();
+
+		char[] cs=tc.toCharArray();
+		
+		//11 karakterli değilse doğru döner çünkü error zaten alınmıştır.
+		if(cs.length!=11)return true;
 		
 		int temp=0;
 		int temp2=0;
@@ -53,11 +56,11 @@ public class TcValidator implements ConstraintValidator<IsValidTc, Long> {
 		}
 	
 		
-			return temp%10==Character.getNumericValue(cs[9])&&temp2%10==Character.getNumericValue(cs[10]);
+			return (temp%10==Character.getNumericValue(cs[9])&&temp2%10==Character.getNumericValue(cs[10]));
 
 		} catch (Exception e) {
 			/*
-			 *Buraya düşüyorsa tc 11 karakter olmadığı için veya doğru formatta olmadığı için düşüyordur 
+			 *Buraya düşüyorsa tc sayılardan oluşmadığı için düşüyordur 
 			 * doğru döner çünkü error zaten handle edilmiştir.Değer 11 karakterli ve sayı ise doğruluğunun kontrol edilmesini istiyorum
 			 */
 			return true; 

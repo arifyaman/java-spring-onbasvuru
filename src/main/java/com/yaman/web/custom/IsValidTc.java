@@ -21,7 +21,7 @@ import com.yaman.web.custom.validators.TcValidator;
 @Documented
 @Constraint(validatedBy=TcValidator.class)
 public @interface IsValidTc {
-	String message() default "Girdiğiniz TC kimlik numarasına sahip biri yok. Geçerli bir TC giriniz :)";
+	String message() default "Girdiğiniz TC kimlik numarasına sahip biri yok. Lütfen geçerli bir TC numarası giriniz. :)";
 	Class<?>[] groups() default { };
 	Class<? extends Payload>[] payload() default { };
 		

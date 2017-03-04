@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.yaman.web.custom.IsValidTc;
 
@@ -25,38 +26,39 @@ import com.yaman.web.custom.IsValidTc;
  *
  */
 public class BasvuruForm {
-	@NotEmpty(message="Ad Soyad Boş olamaz")
+	@NotEmpty(message="Ad Soyad boş olamaz")
 	@Size(min=10,max=60,message="Ad Soyad 10 ile 60 karakter arasında olmalıdır")
 	private	String adsoyad;
 	
-	
-	@NotNull(message="TC Boş olamaz")
-	@Range(min=10000000000l, max=99999999999l,message="TC 11 numaradan oluşmalıdır")
+
+	@NotEmpty(message="TC boş olamaz")
+	@Size(min=11,max=11,message="TC Kimlik numarası 11 haneden oluşmalı")
+	@Pattern(regexp="[0-9]+",message="TC Kimlik sayılardan oluşmalı")
 	@IsValidTc	//custom annotiation, constraint oluşturulmuştur geçerli bir tc numarası olup olmadığı kontrol edilir
-	private Long tc;
+	private String tc;
 	
-	@NotEmpty(message="Adres Boş olamaz")
+	@NotEmpty(message="Adres boş olamaz")
 	@Size(min=10,max=60,message="Adres 10 ile 200 karakter arasında olmalıdır")
 	private String adres;
 	
-	@NotEmpty(message="Telefon Boş olamaz")
+	@NotEmpty(message="Telefon boş olamaz")
 	@Size(min=5,max=20,message="Telefon 5 ile 20 karakter arasında olmalıdır")
 	@Pattern(message="Telefon numarası rakamlardan oluşmalı", regexp="^[+]((([0-9]+) [(][0-9]+[)]) ([0-9]+)[-]([0-9]+))|([0-9]+){1,12}$") //buray� g�zden ge�ir daha sonra 
 	private String telefon;
 	
-	@NotEmpty(message="E-posta Boş olamaz")
+	@NotEmpty(message="E-posta boş olamaz")
 	@Email(message="Geçerli bir E-posta adresi girmelisiniz")
 	@Size(min=10,max=50,message="E-Posta 10 ile 50 karakter arasında olmalıdır")
 	private String eposta;
 	
-	@NotNull(message="Doğum Tarihi Boş olamaz")
+	@NotNull(message="Doğum Tarihi boş olamaz")
 	@Past(message="Doğum Tarihi bugünün öncesi olmalı")
 	private Date dtarih;
 	
 	//on veya off dışında bir değer verilse null olur database e eklenirken 1 dışındaki herşey 0 olacağından kontrol etmedim
 	private Boolean is_parakende;
 	
-	@NotEmpty(message="Tercih nedeni Boş olamaz")
+	@NotEmpty(message="Tercih nedeni boş olamaz")
 	@Size(min=10,max=200,message="Tercih nedeni 10 ile 300 karakter arasında olmalıdır")
 	private String tercih_neden;
 	
@@ -73,9 +75,10 @@ public class BasvuruForm {
 	@Size(min=2,max=20,message="Semt 2 ile 20 karakter arasında olmalıdır")	
 	private String tercih_semt;
 	
-	@NotNull(message="Yatırım miktarınızı belirtmelisiniz")
-	@Range(min=0,message="Yatırım miktarınızı pozitif sayılardan oluşmalı")
-	private int yatirim;
+	@NotEmpty(message="Yatırım miktarınızı belirtmelisiniz")
+	@Size(min=3,max=11,message="Yatırım miktarınız 3 ve 10 hane arasında sayılardan oluşmalı")
+	@Pattern(regexp="[0-9]+",message="Yatırımınız sayılardan oluşmalı")
+	private String yatirim;
 	
 	@Size(max=300,message="Eklemek istedikleriniz en fazla 300 karakter olabilir")	
 	private String ekstra;
@@ -92,12 +95,13 @@ public class BasvuruForm {
 	}
 	
 	
-	public Long  gettc(){
+	public String  gettc(){
 		return this.tc;
+		
 	}
 	
 	
-	public void settc(Long tc) {
+	public void settc(String tc) {
 	
 		this.tc=tc;
 		
@@ -186,11 +190,11 @@ public class BasvuruForm {
 		return tercih_semt;
 	}
 	
-	public void setyatirim(int yatirim) {
+	public void setyatirim(String yatirim) {
 		this.yatirim=yatirim;
 	}
 	
-	public int getyatirim() {
+	public String getyatirim() {
 		return yatirim;
 	}
 	
