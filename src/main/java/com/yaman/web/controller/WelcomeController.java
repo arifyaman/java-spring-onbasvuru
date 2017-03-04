@@ -44,7 +44,6 @@ public class WelcomeController {
 	
 	@RequestMapping(value="/add/basvuruform",method=RequestMethod.POST)
 	public String addBasvuruForm(@Valid @ModelAttribute("basvuruform")  BasvuruForm basvuruForm, BindingResult bindingResult,ModelMap model) {
-	
 			//hatalı veya başarılı durum için bsmodal oluşturulur. 	
 			BootstrapModal bsmodal=new BootstrapModal().setType(ModelType.Error).setTitle("Formu Kontrol Edin");
 	
@@ -53,9 +52,7 @@ public class WelcomeController {
 	          for (ObjectError objectError : bindingResult.getAllErrors())
 	        	  bsmodal.add_to_body("-"+objectError.getDefaultMessage());
 	          
-	          		model.addAllAttributes(bsmodal.getAttributesMap());
-		        
-	          		return "returnbsmodal";
+
 	        }else{
 	        
 	        	try {
@@ -63,15 +60,10 @@ public class WelcomeController {
 	        		myconection.addBasvuruForm(basvuruForm);
 		        	bsmodal.setType(ModelType.Success).setTitle("Başarılı").setBody("Formunuz bize Ulaştı Teşekkürler...");
 
-		        	//Başarılı durumlar bsmodal a gömülmüştür. Spring framework UI ModelPapine bsmodaldan gelen değerler attribute olarak gömülür.
-			        model.addAllAttributes(bsmodal.getAttributesMap());
 			        
-			        return "returnbsmodal";
 				} catch (BootstrapModal e) {
 					/*
-					 * Eğer info türünden bir modal throw edildiyse 
-					 * bu myconnection oluştulurken hataların düzeltilmiş olduğuna işarettir.
-					 * addBasvuruForm medhodu çalışmamıştır. Kullanıcıya formun iletilmediği Warning türünden bir modal ile gösterilir.
+					 *bu durumda addBasvuruForm medhodu çalışmamıştır. Kullanıcıya formun iletilmediği Warning türünden bir modal ile gösterilir.
 					 * 
 					 */
 					if(e.geType()==ModelType.Info)
@@ -86,6 +78,9 @@ public class WelcomeController {
 	        }
 	        
 	        
+	        //Form hataları veya başarılı durum için bsmodal son halini almıştır. UI ModalMap a gömülerek clienta gönderilir.
+      		model.addAllAttributes(bsmodal.getAttributesMap());
+      		return "returnbsmodal";
 	    }
 
 }

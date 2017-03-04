@@ -345,7 +345,9 @@
 			//formun ajax ile post edilmesi
 			
 			$("#basvuruform").submit(function(e) {
-				$( "#form_submitter" ).prop( "disabled", true );
+				e.preventDefault(); 
+				e.stopImmediatePropagation(); //double post, modal ın kapanmama sorunu için
+				$( "#form_submitter" ).prop( "disabled", true );//buttonun disable edilme işlemi.
 			    var form = $(this);
 
 			    $.ajax({
@@ -356,15 +358,17 @@
 			           {
 			        	   $("#modal_div").html(data); //gelen bsmodal DOMa gömülür
 			        	   $("#modal_message").modal("toggle");//gösterilir.
-			        	   $( "#form_submitter" ).prop( "disabled", false );
+			        	   $( "#form_submitter").prop( "disabled", false ); //button tekrar enable edilir.
 			           }
 			         });
 
-			    e.preventDefault(); 
+			    
 			});
 			
 			
     });
+		
+		//sayfa açıldığında eğer modal_showa değer atanmışsa DOM yüklendikten sonra bootstrap modal toggle edilerek gösterilir.
 		<c:if test="${modal_show != null}">
 		$("#modal_message").modal("toggle");
 		</c:if>
