@@ -300,7 +300,7 @@
 		
 		
 		//doğum tarihi bugünden büyük olamaz durumu
-            $(function () {
+
                 $('#datetimepicker4').datetimepicker({
                 viewMode: 'years',
 				format: 'YYYY-MM-DD',
@@ -308,7 +308,7 @@
             }).data("DateTimePicker").maxDate(moment());
 			
 		
-            });
+   
     
 			
           //il ve ilçe seçimi olayları
@@ -340,16 +340,17 @@
 			drop_ilce.append($('<option></option>').val("MERKEZ").html("MERKEZ"));
 		
 		 
-			
+		  });
 			
 			//formun ajax ile post edilmesi
 			
 			$("#basvuruform").submit(function(e) {
 				e.preventDefault(); 
 				e.stopImmediatePropagation(); //double post, modal ın kapanmama sorunu için
-				$( "#form_submitter" ).prop( "disabled", true );//buttonun disable edilme işlemi.
+				$( "#form_submitter" ).attr("disabled", true);//buttonun disable edilme işlemi.
 			    var form = $(this);
-
+				form.blur(); //enter ile multiple post engellemek için
+				
 			    $.ajax({
 			           type: "POST",
 			           url: form.attr( 'action' ),
@@ -358,7 +359,7 @@
 			           {
 			        	   $("#modal_div").html(data); //gelen bsmodal DOMa gömülür
 			        	   $("#modal_message").modal("toggle");//gösterilir.
-			        	   $( "#form_submitter").prop( "disabled", false ); //button tekrar enable edilir.
+			        	  
 			           }
 			         });
 
@@ -366,12 +367,16 @@
 			});
 			
 			
-    });
+
+  
 		
 		//sayfa açıldığında eğer modal_showa değer atanmışsa DOM yüklendikten sonra bootstrap modal toggle edilerek gösterilir.
 		<c:if test="${modal_show != null}">
 		$("#modal_message").modal("toggle");
 		</c:if>
+		
+		
+		
     	});
 
     	

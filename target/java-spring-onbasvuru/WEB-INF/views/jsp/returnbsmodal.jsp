@@ -14,4 +14,17 @@
       </div>
       
     </div>
+    
+    <script>
+    +$(function(){
+    
+   
+		$('#modal_message').on('hidden.bs.modal', function () {
+			 $( "#form_submitter").attr("disabled", false);			
+		});
+    	
+    });
+    
+    
+    </script>
 </c:if>
